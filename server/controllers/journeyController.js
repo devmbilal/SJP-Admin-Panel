@@ -1,4 +1,12 @@
 
 exports.homepage = async (req, res) => {
-     res.send('Hello World!');
+
+
+    const locals = {
+        title: 'Admin Panel',
+        description: 'Smart Journey Planner-Road Safety Project',
+    }
+
+    res.render('index', { locals });
+
 }
