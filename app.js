@@ -3,11 +3,35 @@ require('dotenv').config();
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const connectDB = require('./server/config/db');
+const session = require('express-session')
+const flash=require('connect-flash')
 
 const app = express();
 const port = process.env.PORT || 5000;
 
 connectDB();
+
+//Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+ 
+ // Static Fields 
+app.use(express.static('public'));
+
+//Express Session
+app.use(session({
+    secret:'secret',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        maxAge: 10000*60*60*24*7 // 1 week
+    }
+}));
+
+// setup flash
+app.use(
+  flash({ sessionKeyName: 'express-flash-message'}));
 
 
 // Templating Engine   
@@ -16,7 +40,7 @@ app.set('layout', './layouts/main');
 app.set('view engine', 'ejs');
 
 // Routes
-app.use('/', require('./server/routes/journey'));
+app.use('/', require('./server/routes/routes'));
 
 //Handlle 404
 app.get('*', (req, res) => {  
