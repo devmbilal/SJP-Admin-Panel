@@ -12,6 +12,7 @@
     "firebase-admin": "^11.11.0",
     "firefose": "^1.1.5",
     "flash": "^1.1.0",
+    "method-override": "^3.0.0",
     "mongoose": "^7.5.3"
   },
   "name": "sjp-admin-panel",

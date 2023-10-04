@@ -13,7 +13,9 @@ router.get('/about', aboutController.about);
 // Stops
 router.get('/addstop', stopController.addStop);
 router.post('/addstop', stopController.postStop);
-router.get('/viewstop/:id', stopController.viewstop);
-
+router.get('/viewstop/:id', stopController.viewStop);
+router.get('/editstop/:id', stopController.editStop);
+router.put('/editstop/:id', stopController.editPost); 
+router.delete('/editstop/:id', stopController.deleteStop);
 
 module.exports = router;

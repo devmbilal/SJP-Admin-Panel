@@ -30,7 +30,7 @@ exports.postStop  = async (req, res) => {
     
 }
 
-exports.viewstop = async (req, res) => {
+exports.viewStop = async (req, res) => {
 
   try {
     const stop = await Stop.findOne({ _id: req.params.id })
@@ -50,3 +50,54 @@ exports.viewstop = async (req, res) => {
   }
 
 }
+
+
+exports.editStop = async (req, res) => {
+
+  try {
+    const stop = await Stop.findOne({ _id: req.params.id })
+
+    const locals = {
+      title: "View Stop Data",
+      description: "Smart Journey Planner Admin Panel",
+    };
+
+    res.render('stop/editstop', {
+      locals,
+      stop
+    })
+
+  } catch (error) {
+    console.log(error);
+  }
+
+}
+
+exports.editPost = async (req, res) => {
+
+    try {
+    await Stop.findByIdAndUpdate(req.params.id,{
+      stopId: req.body.stopId,
+        stopName: req.body.stopName,
+        latitude: req.body.latitude,
+        longitude:req.body.longitude,
+        updatedAt: Date.now()
+    });
+    await res.redirect(`/editstop/${req.params.id}`);
+    
+    console.log('redirected');
+  } catch (error) {
+    console.log(error);
+  }
+
+}
+
+  exports.deleteStop = async (req, res) => {
+  try {
+    await Stop.deleteOne({ _id: req.params.id });
+    res.redirect("/")
+  } catch (error) {
+    console.log(error);
+  }
+}
+
