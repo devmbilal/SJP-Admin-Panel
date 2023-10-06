@@ -1,4 +1,4 @@
-const Stop = require('../../models/stops/Stop');
+const Stop = require('../../models/stop/Stop');
 const mongoose = require('mongoose');
 
 exports.homepage = async (req, res) => {
