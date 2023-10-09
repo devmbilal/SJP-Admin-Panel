@@ -1,4 +1,5 @@
 const Stop = require('../../models/stop/Stop');
+const Sequence=require('../../models/sequence/Sequence');
 const mongoose = require('mongoose');
 
 exports.homepage = async (req, res) => {
@@ -14,17 +15,15 @@ exports.homepage = async (req, res) => {
        let page = req.query.page || 1;
 
     try {
-      const stops = await Stop.aggregate([ { $sort: { createdAt: -1 } } ])
-        .skip(perPage * page - perPage)
-        .limit(perPage)
-        .exec(); 
-      const count = await Stop.count();
+       const stops = await Stop.find({}).limit(10);
+       const sequences = await Sequence.find({}).limit(10);
+        
+
 
       res.render('index', {
         locals,
         stops,
-        current: page,
-        pages: Math.ceil(count / perPage),
+        sequences,
         messages
       });
 
