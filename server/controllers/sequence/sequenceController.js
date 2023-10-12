@@ -1,13 +1,23 @@
 const Sequence = require('../../models/sequence/Sequence');
+const Stop = require('../../models/stop/Stop');
+
+
 const mongoose = require('mongoose');
 
-exports.addSequence = (req, res) => {
+exports.addSequence = async (req, res) => {
+
     const locals = {
         title: 'Add New Sequence',
         description: 'Smart Journey Planner',
     }
+    try {
+       const stops = await Stop.find({}, 'stopName');
+       console.log(stops)
+       res.render('sequence/addsequence',{locals,stops});
 
-    res.render('sequence/addsequence',locals);
+    } catch (err) {
+        console.log(err);
+    }
 }
 
 exports.postSequence  = async (req, res) => {
@@ -15,7 +25,7 @@ exports.postSequence  = async (req, res) => {
 
     const newSequence = new Sequence({
         stopId: req.body.stopId,
-        stopId: req.body.stopId,
+        seqId: req.body.seqId,
         seqNumber: req.body.seqNumber,
     });
 

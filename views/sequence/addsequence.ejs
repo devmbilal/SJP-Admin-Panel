@@ -28,18 +28,6 @@
 <form action="/addsequence" method="POST">
   <div class="row form-group mb-4">
     <div class="col">
-      <label for="StopId">StopId</label>
-      <input
-        type="number"
-        class="form-control"
-        id="stopId"
-        name="stopId"
-        value=""
-        placeholder="Stop Id"
-        required
-      />
-    </div>
-    <div class="col">
       <label for="SequenceId">Sequence Id</label>
       <input
         type="text"
@@ -62,6 +50,14 @@
         placeholder="Sequence Number"
         required
       />
+    </div>
+    <div class="container">
+      <label for="stopDropdown">Select a Stop:</label>
+      <select class="form-select" id="stopDropdown" name="stopDropdown">
+        <% stops.forEach(stop => { %>
+        <option value="<%= stop.stopName %>"><%= stop.stopName %></option>
+        <% }); %>
+      </select>
     </div>
   </div>
 
