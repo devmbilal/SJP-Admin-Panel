@@ -7,6 +7,11 @@ tripId: {
      required: true, 
      unique: true 
 },
+tripName: {
+     type: String, 
+     required: true, 
+     unique: true 
+},
 routeId: { 
     type: String,
     required: true,

@@ -20,19 +20,23 @@ exports.addTrip = async (req, res) => {
 }
 
 exports.postTrip = async (req, res) => {
-    console.log(req.body);
+     console.log(req.body);
 
-    const newStop = new Stop({
-        stopId: req.body.stopId,
-        stopName: req.body.stopName,
-        latitude: req.body.latitude,
-        longitude:req.body.longitude
+    const newTrip = new Trip({
+        tripId: req.body.tripId,
+        tripName: req.body.tripName,
+        tripHead: req.body.tripHead,
+        arrivalTime: req.body.arrivalTime,
+        departureTime:req.body.departureTime,
+        vehicleId : req.body.vehicleId,
+        routeId: req.body.tripDropdown,
+        serviceId : req.body.serviceId
     });
 
     try {
-        await Stop.create(newStop);
-        req.flash("info", "New Stop has been added.");
-        res.redirect('/');
+        await Trip.create(newTrip);
+        req.flash("info", "New Trip has been added");
+        res.redirect(`/`);
     } catch (err) {
         console.log(err);
     }
