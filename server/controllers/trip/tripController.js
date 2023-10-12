@@ -1,14 +1,22 @@
 const mongoose = require('mongoose');
 const Trip = require('../../models/trip/Trip');
+const Route=require('../../models/route/Route');
+const { Router } = require('express');
 
 
-exports.addTrip = (req, res) => {
+exports.addTrip = async (req, res) => {
     const locals = {
-        title: 'Add New Stop',
+        title: 'Add New Trip',
         description: 'Smart Journey Planner',
     }
+    try {
+       const routes = await Route.find({}, 'routeName');
+       console.log(routes)
+       res.render('trip/addtrip',{locals,routes});
 
-    res.render('stop/addstop',locals);
+    } catch (err) {
+        console.log(err);
+    }
 }
 
 exports.postTrip = async (req, res) => {

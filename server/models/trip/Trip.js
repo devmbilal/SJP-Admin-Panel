@@ -22,7 +22,7 @@ serviceId: {
   arrivalTime: { 
     type: Date 
 }, 
-  departureime: { 
+  departureTime: { 
     type: Date 
 },
 vehicleId: { 

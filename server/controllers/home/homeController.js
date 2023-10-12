@@ -1,6 +1,7 @@
 const Stop = require('../../models/stop/Stop');
 const Sequence=require('../../models/sequence/Sequence');
 const Route = require('../../models/route/Route');
+const Trip = require('../../models/trip/Trip');
 const mongoose = require('mongoose');
 
 exports.homepage = async (req, res) => {
@@ -19,13 +20,14 @@ exports.homepage = async (req, res) => {
        const stops = await Stop.find({}).limit(4);
        const sequences = await Sequence.find({}).limit(4);
        const routes = await Route.find({}).limit(4);
-
+       const trips = await Trip.find({}).limit(4);
 
       res.render('index', {
         locals,
         stops,
         sequences,
         routes,
+        trips,
         messages
       });
 
