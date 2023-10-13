@@ -147,7 +147,7 @@ exports.editSequence = async (req, res) => {
 
   try {
     const sequence = await  Sequence.findOne({ _id: req.params.id })
-
+    const stops = await Stop.find({}, 'stopName');
     const locals = {
       title: "View Sequence Data",
       description: "Smart Journey Planner Admin Panel",
@@ -155,7 +155,8 @@ exports.editSequence = async (req, res) => {
 
     res.render('sequence/editsequence', {
       locals,
-      sequence
+      sequence,
+      stops
     })
 
   } catch (error) {
@@ -166,11 +167,12 @@ exports.editSequence = async (req, res) => {
 
 exports.editPost = async (req, res) => {
 
+  console.log(req.body);
+
     try {
     await  Sequence.findByIdAndUpdate(req.params.id,{
-        stopId: req.body.stopId,
-        stopId: req.body.stopId,
-        seqNumber: req.body.seqNumber,
+        seqId: req.body.seqId,
+        seqName: req.body.seqName,
         updatedAt: Date.now()
     });
     await res.redirect(`/editsequence/${req.params.id}`);

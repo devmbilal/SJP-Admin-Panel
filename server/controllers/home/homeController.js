@@ -15,8 +15,8 @@ exports.homepage = async (req, res) => {
        let page = req.query.page || 1;
 
     try {
-       const stops = await Stop.find({}).limit(10);
-       const sequences = await Sequence.find({}).limit(10);
+       const stops = await Stop.find({}).limit(4);
+       const sequences = await Sequence.find({}).limit(4);
         
 
 
