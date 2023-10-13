@@ -24,8 +24,8 @@ router.get('/addsequence', sequenceController.addSequence);
 router.post('/addsequence', sequenceController.postSequence);
 // Route to add a stop to a sequence 
 router.get('/addstopsequence/:id', sequenceController.addStopSequence);
-
-
+router.post('/addstopsequence/:id', sequenceController.postStopSequence);
+//--------------------------------------------
 router.get('/viewsequence/:id', sequenceController.viewSequence);
 router.get('/editsequence/:id', sequenceController.editSequence);
 router.put('/editsequence/:id', sequenceController.editPost); 

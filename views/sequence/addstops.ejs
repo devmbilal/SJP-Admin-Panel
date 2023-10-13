@@ -76,19 +76,75 @@
   </li>
 </ul>
 <div class="stopsec">
-  <form action="/addsequence" method="POST">
+  <form action="/addstopsequence/<%= sequence._id %>" method="POST">
     <div class="row form-group mb-4">
       <div class="container">
         <label for="stopDropdown">Select a Stop:</label>
         <select class="form-select" id="stopDropdown" name="stopDropdown">
           <% stops.forEach(stop => { %>
-          <option value="<%= stop.stopName %>"><%= stop.stopName %></option>
+          <option value="<%= stop._id %>_<%= stop.stopName %>">
+            <%= stop.stopName %>
+          </option>
           <% }); %>
         </select>
+      </div>
+      <div class="col">
+        <label for="Name">Sequence Number</label>
+        <input
+          type="text"
+          class="form-control"
+          id="seqNumber"
+          name="seqNumber"
+          value=""
+          placeholder="Sequence Number"
+          required
+        />
       </div>
       <div class="form-group mb-4 stopbtn">
         <button type="submit" class="btn btn-primary">Add Stop</button>
       </div>
     </div>
   </form>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Sequence Number</th>
+        <th scope="col" class="text-end">Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% sequence.stops.forEach(element => { %>
+      <tr class="align-middle">
+        <td><%= element.stopName %></td>
+        <td><%= element.seqNumber%></td>
+        <td class="text-end">
+          <div class="d-flex flex-row justify-content-end gap-2">
+            <a
+              href="/viewstop/<%= element.stopId%>"
+              type="button"
+              class="btn btn-primary btn-small"
+            >
+              <i class="bi bi-eye"></i>
+            </a>
+
+            <form
+              action="/editstop/<%= element._id %>?_method=DELETE"
+              method="POST"
+              class="position-relative"
+            >
+              <button type="submit" class="btn btn-danger btn-small">
+                <i class="bi bi-person-x"></i>
+              </button>
+            </form>
+          </div>
+        </td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
 </div>

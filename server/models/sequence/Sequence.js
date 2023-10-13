@@ -8,7 +8,10 @@ const sequenceSchema = new Schema({
      unique: true 
     },
   stops: [{
-    stopId: {
+    stopId: { 
+    type: String, 
+    },
+    stopName: {
       type: String,
       required: true,
     },

@@ -25,6 +25,7 @@ exports.postSequence  = async (req, res) => {
     const newSequence = new Sequence({
         seqId: req.body.seqId,
         seqName: req.body.seqName,
+        stops: [],
     });
 
     try {
@@ -56,6 +57,50 @@ exports.addStopSequence = async (req, res) => {
         console.log(err);
     }
 }
+
+
+exports.postStopSequence = async (req, res) => {
+
+  const messages = req.flash('info');
+
+  const locals = {
+        title: 'Add Stops to Sequence',
+        description: 'Smart Journey Planner',
+    }
+
+    try {
+
+    const { seqId } = req.params;
+    const  selectedStop= req.body.stopDropdown;
+    
+
+    if (selectedStop) {
+    // Split the selected value into ID and name
+    const [stopId, stopName] = selectedStop.split('_');
+    const seqNumber = req.body.seqNumber;
+
+    // Find the sequence by seqId
+    const sequence = await Sequence.findOne({ _id: req.params.id });
+
+    // Add the new stop to the stops array
+    sequence.stops.push({ stopId,stopName, seqNumber });
+    
+    // Save the updated sequence document
+    await sequence.save();
+    console.log(sequence)
+    const stops = await Stop.find({}, 'stopName');
+
+    res.render('sequence/addstops',{locals,sequence,stops,messages});
+    }else {
+      // Handle the case where selectedStop is undefined or null
+      res.status(400).send('Invalid selected stop value');
+    }
+
+    } catch (err) {
+        console.log(err);
+    }
+}
+
 
 
 
