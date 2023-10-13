@@ -101,6 +101,23 @@ exports.postStopSequence = async (req, res) => {
     }
 }
 
+exports.deleteStopSequence = async (req, res) => {
+  
+  try {
+     const { seqId, stopId } = req.params;
+    // Find the sequence by seqId
+    const sequence = await Sequence.findOne({ _id: seqId });
+    // Filter out the stop to be deleted from the stops array
+    sequence.stops = sequence.stops.filter(stop => stop.stopId !== stopId);
+    // Save the updated sequence document
+    await sequence.save();
+    // Redirect to wherever you want after deleting a stop from the sequence
+    res.redirect(`/addstopsequence/${seqId}`);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+}
 
 
 

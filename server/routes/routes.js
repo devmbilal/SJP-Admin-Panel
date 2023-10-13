@@ -25,7 +25,9 @@ router.post('/addsequence', sequenceController.postSequence);
 // Route to add a stop to a sequence 
 router.get('/addstopsequence/:id', sequenceController.addStopSequence);
 router.post('/addstopsequence/:id', sequenceController.postStopSequence);
-//--------------------------------------------
+// Route to delete a stop from sequence
+router.delete('/deletestopsequence/:seqId/:stopId', sequenceController.deleteStopSequence);
+//----------------------------------------
 router.get('/viewsequence/:id', sequenceController.viewSequence);
 router.get('/editsequence/:id', sequenceController.editSequence);
 router.put('/editsequence/:id', sequenceController.editPost); 
