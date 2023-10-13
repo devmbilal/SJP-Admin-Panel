@@ -7,12 +7,18 @@ const sequenceSchema = new Schema({
      required: true,
      unique: true 
     },
-  stopId: { 
-    type: String,
-     required: true
-     },
-  seqNumber: {
-     type: Number, 
+  stops: [{
+    stopId: {
+      type: String,
+      required: true,
+    },
+    seqNumber: {
+      type: Number,
+      required: true,
+    },
+  }],
+  seqName: {
+     type: String, 
      required: true 
     },
   createdAt: {

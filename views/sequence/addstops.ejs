@@ -1,8 +1,22 @@
-<h1>view sequence</h1>
+<div class="messages">
+  <% messages.forEach(element => { %>
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <%= element %>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+  <% }) %>
+</div>
+
+<h1 class="heading">Add Stops to Sequence</h1>
 <div
   class="d-flex justify-content-between flex-wrap flex-md nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
 >
-  <h1 class="h2"><%= sequence.seqId %></h1>
+  <h1 class="h2"><%= sequence.seqName %></h1>
   <div class="btn-toolbar mb-2 mb-md 0">
     <div class="btn-group me-2">
       <button type="button" class="btn btn-sm btn-outline-secondary">
@@ -42,15 +56,8 @@
 
   <li class="list-group-item">
     <div class="row">
-      <div class="col" style="max-width: 140px"><b>Stop Id:</b></div>
-      <div class="col"><%= sequence.stopId%></div>
-    </div>
-  </li>
-
-  <li class="list-group-item">
-    <div class="row">
-      <div class="col" style="max-width: 140px"><b>Sequence Number:</b></div>
-      <div class="col"><%= sequence.seqNumber %></div>
+      <div class="col" style="max-width: 140px"><b>Name:</b></div>
+      <div class="col"><%= sequence.seqName %></div>
     </div>
   </li>
 
@@ -68,3 +75,20 @@
     </div>
   </li>
 </ul>
+<div class="stopsec">
+  <form action="/addsequence" method="POST">
+    <div class="row form-group mb-4">
+      <div class="container">
+        <label for="stopDropdown">Select a Stop:</label>
+        <select class="form-select" id="stopDropdown" name="stopDropdown">
+          <% stops.forEach(stop => { %>
+          <option value="<%= stop.stopName %>"><%= stop.stopName %></option>
+          <% }); %>
+        </select>
+      </div>
+      <div class="form-group mb-4 stopbtn">
+        <button type="submit" class="btn btn-primary">Add Stop</button>
+      </div>
+    </div>
+  </form>
+</div>

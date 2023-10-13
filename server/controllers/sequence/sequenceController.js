@@ -11,9 +11,8 @@ exports.addSequence = async (req, res) => {
         description: 'Smart Journey Planner',
     }
     try {
-       const stops = await Stop.find({}, 'stopName');
-       console.log(stops)
-       res.render('sequence/addsequence',{locals,stops});
+       
+       res.render('sequence/addsequence',locals);
 
     } catch (err) {
         console.log(err);
@@ -24,20 +23,41 @@ exports.postSequence  = async (req, res) => {
     console.log(req.body);
 
     const newSequence = new Sequence({
-        stopId: req.body.stopId,
         seqId: req.body.seqId,
-        seqNumber: req.body.seqNumber,
+        seqName: req.body.seqName,
     });
 
     try {
         await Sequence.create(newSequence);
-        req.flash("info", "New Sequence has been added.");
-        res.redirect('/');
+        req.flash("info", "New Sequence has been added and now add stops to your Sequence");
+        res.redirect(`/addstopsequence/${newSequence._id}`);
     } catch (err) {
         console.log(err);
     }
     
 }
+
+exports.addStopSequence = async (req, res) => {
+
+    const messages = req.flash('info');
+
+    const locals = {
+        title: 'Add Stops to Sequence',
+        description: 'Smart Journey Planner',
+    }
+    try {
+       const stops = await Stop.find({}, 'stopName');
+       console.log(stops)
+       const sequence = await Sequence.findOne({ _id: req.params.id })
+       console.log(sequence)
+       res.render('sequence/addstops',{locals,sequence,stops,messages});
+
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+
 
 exports.viewSequence = async (req, res) => {
 

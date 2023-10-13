@@ -40,24 +40,16 @@
       />
     </div>
     <div class="col">
-      <label for="Name"> Sequence Number</label>
+      <label for="Name"> Sequence Name</label>
       <input
         type="text"
         class="form-control"
-        id="seqNumber"
-        name="seqNumber"
+        id="seqName"
+        name="seqName"
         value=""
-        placeholder="Sequence Number"
+        placeholder="Sequence Name"
         required
       />
-    </div>
-    <div class="container">
-      <label for="stopDropdown">Select a Stop:</label>
-      <select class="form-select" id="stopDropdown" name="stopDropdown">
-        <% stops.forEach(stop => { %>
-        <option value="<%= stop.stopName %>"><%= stop.stopName %></option>
-        <% }); %>
-      </select>
     </div>
   </div>
 
