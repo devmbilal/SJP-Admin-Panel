@@ -1,8 +1,8 @@
-<h1 class="heading">Edit Stop</h1>
+<h1 class="heading">Edit Route</h1>
 <div
   class="d-flex justify-content-between flex-wrap flex-md nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
 >
-  <h1 class="h2"><%= stop.stopName %></h1>
+  <h1 class="h2"><%= route.routeName %></h1>
   <div class="btn-toolbar mb-2 mb-md 0">
     <div class="btn-group me-2">
       <button class="btn btn-sm btn-outline-secondary">?</button>
@@ -16,28 +16,28 @@
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
-          <li class="breadcrumb-item active"><%=stop.stopName %></li>
+          <li class="breadcrumb-item active"><%=route.routeName %></li>
         </ol>
       </nav>
     </div>
     <div class="col text-end fw-lighter">
-      <b>Last Updated: <%= new Date(stop.updatedAt).toUTCString() %></b>
-      <b>UserId:</b> <%= stop._id %>
+      <b>Last Updated: <%= new Date(route.updatedAt).toUTCString() %></b>
+      <b>UserId:</b> <%= route._id %>
     </div>
   </div>
 </div>
 
-<form action="/editstop/<%= stop._id %>?_method=PUT" method="POST">
+<form action="/editroute/<%= route._id %>?_method=PUT" method="POST">
   <div class="row form-group mb-4">
     <div class="col">
-      <label for="StopId">Stop Id</label>
+      <label for="StopId">Route Id</label>
       <input
         type="text"
         class="form-control"
-        id="stopid"
-        name="stopId"
-        value="<%= stop.stopId %>"
-        placeholder="Stop Id"
+        id="routeid"
+        name="routeId"
+        value="<%= route.routeId %>"
+        placeholder="Route Id"
         required
       />
     </div>
@@ -46,45 +46,34 @@
       <input
         type="text"
         class="form-control"
-        id="stopName"
-        name="stopName"
-        value="<%= stop.stopName %>"
+        id="routeName"
+        name="routeName"
+        value="<%= route.routeName %>"
         placeholder="Name"
         required
       />
     </div>
 
     <div class="col">
-      <label for="Longitude">Longitude</label>
-      <input
-        type="number"
-        class="form-control"
-        id="longitude"
-        name="longitude"
-        value="<%= stop.longitude %>"
-        placeholder="Longitude"
-        required
-      />
+      <label for="status">Status</label>
+      <select class="form-select" id="status" name="status" required>
+        <option value="true">Yes</option>
+        <option value="false">No</option>
+      </select>
     </div>
 
-    <div class="row form-group mb-4">
-      <div class="col">
-        <label for="Latitude">Latitude</label>
-        <input
-          type="number"
-          class="form-control"
-          id="latitude"
-          name="latitude"
-          value="<%= stop.latitude%>"
-          placeholder="Latitude"
-          required
-        />
-      </div>
+    <div class="container">
+      <label for="stopDropdown">Select a Sequence:</label>
+      <select class="form-select" id="seqDropdown" name="seqDropdown">
+        <% sequences.forEach(sequence => { %>
+        <option value="<%= sequence._id %>"><%= sequence.seqName %></option>
+        <% }); %>
+      </select>
     </div>
   </div>
 
   <div class="form-group mb-4">
-    <button type="submit" class="btn btn-primary">Update Stop</button>
+    <button type="submit" class="btn btn-primary">Update Route</button>
 
     <button
       type="button"
@@ -93,7 +82,7 @@
       id="deleteButton"
       data-bs-target="#deleteModal"
     >
-      Delete Stop
+      Delete Route
     </button>
   </div>
 </form>
@@ -102,7 +91,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <div class="modal-title">You are about to remove a stop.</div>
+        <div class="modal-title">You are about to remove a route.</div>
         <button
           type="button"
           class="btn-close"
@@ -112,8 +101,8 @@
       </div>
       <div class="modal-body">
         <p>
-          This will remove the stop
-          <b class="fw-bold"><%= stop.stopName %> </b><br />
+          This will remove the route
+          <b class="fw-bold"><%= route.routeName %> </b><br />
           Are you sure?
         </p>
       </div>
@@ -122,12 +111,12 @@
           Close
         </button>
         <form
-          action="/editstop/<%= stop._id %>?_method=DELETE"
+          action="/editroute/<%= route._id %>?_method=DELETE"
           method="POST"
           class="position-relative"
         >
           <button type="submit" class="btn btn-primary">
-            Yes, Remove Stop
+            Yes, Remove Route
           </button>
         </form>
       </div>

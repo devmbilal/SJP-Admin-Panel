@@ -15,6 +15,10 @@ seqId: {
     type: String, 
     required: true
 },
+status: { 
+    type: Boolean , 
+    required: true
+},
 createdAt:
  {
     type: Date,

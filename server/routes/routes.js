@@ -4,6 +4,9 @@ const homeController = require('../controllers/home/homeController');
 const aboutController = require('../controllers/about/aboutController');
 const stopController = require('../controllers/stops/stopController');
 const sequenceController = require('../controllers/sequence/sequenceController');
+const routeController = require('../controllers/route/routeController');
+
+
 
 // Home Page
 router.get('/', homeController.homepage);
@@ -41,6 +44,14 @@ router.get('/sequences', sequenceController.sequences);
 
 
 
+// Routes
+router.get('/addroute', routeController.addRoute);
+router.post('/addroute', routeController.postRoute);
+router.get('/viewroute/:id', routeController.viewRoute);
+router.get('/editroute/:id', routeController.editRoute);
+router.put('/editroute/:id', routeController.editPost); 
+router.delete('/editroute/:id', routeController.deleteRoute);
+router.get('/routes', routeController.routes);
 
 
 

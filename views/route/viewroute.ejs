@@ -1,8 +1,8 @@
-<h1 class="heading">View Stop</h1>
+<h1 class="heading">View Route</h1>
 <div
   class="d-flex justify-content-between flex-wrap flex-md nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
 >
-  <h1 class="h2"><%= stop.stopName %></h1>
+  <h1 class="h2"><%= route.routeName %></h1>
   <div class="btn-toolbar mb-2 mb-md 0">
     <div class="btn-group me-2">
       <button type="button" class="btn btn-sm btn-outline-secondary">
@@ -21,13 +21,13 @@
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
-          <li class="breadcrumb-item active"><%= stop.stopName %></li>
+          <li class="breadcrumb-item active"><%= route.routeName %></li>
         </ol>
       </nav>
     </div>
     <div class="col text-end fw-lighter">
-      <b>Last Updated <%= new Date(stop.updatedAt).toUTCString() %> </b>
-      <b>StopId:</b> <%= stop._id %>
+      <b>Last Updated <%= new Date(route.updatedAt).toUTCString() %> </b>
+      <b>StopId:</b> <%= route._id %>
     </div>
   </div>
 </div>
@@ -36,42 +36,43 @@
   <li class="list-group-item">
     <div class="row">
       <div class="col" style="max-width: 140px"><b>Stop Id:</b></div>
-      <div class="col"><%= stop.stopId %></div>
+      <div class="col"><%= route.routeId %></div>
     </div>
   </li>
 
   <li class="list-group-item">
     <div class="row">
-      <div class="col" style="max-width: 140px"><b>Stop Name:</b></div>
-      <div class="col"><%= stop.stopName%></div>
+      <div class="col" style="max-width: 140px"><b>Route Name :</b></div>
+      <div class="col"><%= route.routeName%></div>
     </div>
   </li>
 
   <li class="list-group-item">
     <div class="row">
-      <div class="col" style="max-width: 140px"><b>Longitude:</b></div>
-      <div class="col"><%= stop.longitude %></div>
-    </div>
-  </li>
-
-  <li class="list-group-item">
-    <div class="row">
-      <div class="col" style="max-width: 140px"><b>Latitude:</b></div>
-      <div class="col"><%= stop.latitude %></div>
+      <div class="col" style="max-width: 140px"><b>Operational :</b></div>
+      <div class="col"><%= route.status ? 'Yes' : 'No' %></div>
     </div>
   </li>
 
   <li class="list-group-item">
     <div class="row">
       <div class="col" style="max-width: 140px"><b>Date Created:</b></div>
-      <div class="col"><%= stop.createdAt %></div>
+      <div class="col"><%= route.createdAt %></div>
     </div>
   </li>
 
   <li class="list-group-item">
     <div class="row">
       <div class="col" style="max-width: 140px"><b>Date Modified:</b></div>
-      <div class="col"><%= stop.updatedAt %></div>
+      <div class="col"><%= route.updatedAt %></div>
     </div>
   </li>
 </ul>
+
+<div class="row">
+  <div class="col end-btn">
+    <a href="/viewsequence/<%= route.seqId %>" class="btn btn-primary">
+      View Stops Sequence belonging to this Route
+    </a>
+  </div>
+</div>
