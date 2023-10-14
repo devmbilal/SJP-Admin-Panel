@@ -18,6 +18,10 @@ router.get('/viewstop/:id', stopController.viewStop);
 router.get('/editstop/:id', stopController.editStop);
 router.put('/editstop/:id', stopController.editPost); 
 router.delete('/editstop/:id', stopController.deleteStop);
+// View All Stops 
+router.get('/stops', stopController.stops);
+
+
 
 // Sequence
 router.get('/addsequence', sequenceController.addSequence);

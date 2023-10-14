@@ -101,3 +101,25 @@ exports.editPost = async (req, res) => {
   }
 }
 
+exports.stops = async (req, res) => {
+ 
+    let perPage = 12;
+    let page = req.query.page || 1;
+
+    try {
+      const stops = await Stop.aggregate([ { $sort: { createdAt: -1 } } ])
+        .skip(perPage * page - perPage)
+        .limit(perPage)
+        .exec(); 
+      const count = await Stop.count();
+
+      res.render('stop/stops', {
+        stops,
+        current: page,
+        pages: Math.ceil(count / perPage),
+      });
+
+    } catch (error) {
+      console.log(error);
+    }
+}
