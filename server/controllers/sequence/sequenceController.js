@@ -196,7 +196,7 @@ exports.editPost = async (req, res) => {
 
 exports.sequences = async (req, res) => {
  
-    let perPage = 3;
+    let perPage = 12;
     let page = req.query.page || 1;
 
     try {
