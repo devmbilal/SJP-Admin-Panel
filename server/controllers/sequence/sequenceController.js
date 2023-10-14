@@ -193,3 +193,27 @@ exports.editPost = async (req, res) => {
   }
 }
 
+
+exports.sequences = async (req, res) => {
+ 
+    let perPage = 3;
+    let page = req.query.page || 1;
+
+    try {
+      const sequences = await Sequence.aggregate([ { $sort: { createdAt: -1 } } ])
+        .skip(perPage * page - perPage)
+        .limit(perPage)
+        .exec(); 
+      const count = await Sequence.count();
+
+      res.render('sequence/sequences', {
+        sequences,
+        current: page,
+        pages: Math.ceil(count / perPage),
+      });
+
+    } catch (error) {
+      console.log(error);
+    }
+}
+

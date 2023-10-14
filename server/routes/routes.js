@@ -36,5 +36,12 @@ router.get('/viewsequence/:id', sequenceController.viewSequence);
 router.get('/editsequence/:id', sequenceController.editSequence);
 router.put('/editsequence/:id', sequenceController.editPost); 
 router.delete('/editsequence/:id', sequenceController.deleteSequence);
+// Route to view all sequences
+router.get('/sequences', sequenceController.sequences);
+
+
+
+
+
 
 module.exports = router;
