@@ -11,10 +11,6 @@ routeId: {
     type: String,
     required: true,
 },
-routeName: { 
-    type: String, 
-    required: true 
-},
 tripHead: { 
     type: String, 
     required: true

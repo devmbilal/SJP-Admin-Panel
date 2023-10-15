@@ -5,7 +5,7 @@ const aboutController = require('../controllers/about/aboutController');
 const stopController = require('../controllers/stops/stopController');
 const sequenceController = require('../controllers/sequence/sequenceController');
 const routeController = require('../controllers/route/routeController');
-
+const tripController = require('../controllers/trip/tripController');
 
 
 // Home Page
@@ -52,6 +52,12 @@ router.get('/editroute/:id', routeController.editRoute);
 router.put('/editroute/:id', routeController.editPost); 
 router.delete('/editroute/:id', routeController.deleteRoute);
 router.get('/routes', routeController.routes);
+
+
+// Trips
+router.get('/addtrip', tripController.addTrip);
+router.post('/addtrip', tripController.postTrip);
+
 
 
 
