@@ -46,6 +46,9 @@ margin: 1rem 0 1rem 0;
   display:flex;
   align-items:center;
 }
+.h2{
+  color:#333;
+}
 @media (max-width: 767.98px) {
   .sidebar {
     top: 5rem;
@@ -60,7 +63,7 @@ margin: 1rem 0 1rem 0;
 
 .sidebar .nav-link {
   font-weight: 500;
-  color: #333;
+  color:#2470dc;
 }
 
 .sidebar .nav-link .feather {
@@ -69,7 +72,7 @@ margin: 1rem 0 1rem 0;
 }
 
 .sidebar .nav-link.active {
-  color: #2470dc;
+  color: #727272;
 }
 
 .sidebar .nav-link:hover .feather,
