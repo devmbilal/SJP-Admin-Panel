@@ -25,10 +25,10 @@ serviceId: {
     required: true 
 },
   arrivalTime: { 
-    type: Date 
+    type: String 
 }, 
   departureTime: { 
-    type: Date 
+    type: String 
 },
 vehicleId: { 
     type: String, 
