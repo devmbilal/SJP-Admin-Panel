@@ -59,7 +59,7 @@ router.get('/addtrip', tripController.addTrip);
 router.post('/addtrip', tripController.postTrip);
 router.get('/edittrip/:id', tripController.editTrip);
 router.put('/edittrip/:id', tripController.editPost); 
-
+router.delete('/edittrip/:id', tripController.deleteTrip);
 
 
 module.exports = router;

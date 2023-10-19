@@ -90,3 +90,12 @@ exports.editPost = async (req, res) => {
   }
 
 }
+
+ exports.deleteTrip = async (req, res) => {
+  try {
+    await Trip.deleteOne({ _id: req.params.id });
+    res.redirect("/")
+  } catch (error) {
+    console.log(error);
+  }
+}
