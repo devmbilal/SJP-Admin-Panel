@@ -43,3 +43,50 @@ exports.postTrip = async (req, res) => {
     }
     
 }
+
+
+exports.editTrip = async (req, res) => {
+
+  try {
+    const trip = await Trip.findOne({ _id: req.params.id })
+    const routes = await Route.find({}, 'routeName');
+     console.log(routes)
+    const locals = {
+      title: "Edit Trip Data",
+      description: "Smart Journey Planner Admin Panel",
+    };
+
+    res.render('trip/edittrip', {
+      locals,
+      trip,
+      routes
+    })
+
+  } catch (error) {
+    console.log(error);
+  }
+
+}
+
+exports.editPost = async (req, res) => {
+
+    try {
+    await Trip.findByIdAndUpdate(req.params.id,{
+        tripId: req.body.tripId,
+        tripName: req.body.tripName,
+        tripHead: req.body.tripHead,
+        arrivalTime: req.body.arrivalTime,
+        departureTime:req.body.departureTime,
+        vehicleId : req.body.vehicleId,
+        routeId: req.body.tripDropdown,
+        serviceId : req.body.serviceId,
+        updatedAt: Date.now()
+    });
+    await res.redirect(`/edittrip/${req.params.id}`);
+    
+    console.log('redirected');
+  } catch (error) {
+    console.log(error);
+  }
+
+}

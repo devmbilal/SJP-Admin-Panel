@@ -58,7 +58,7 @@ exports.editStop = async (req, res) => {
     const stop = await Stop.findOne({ _id: req.params.id })
 
     const locals = {
-      title: "View Stop Data",
+      title: "Edit Stop Data",
       description: "Smart Journey Planner Admin Panel",
     };
 
