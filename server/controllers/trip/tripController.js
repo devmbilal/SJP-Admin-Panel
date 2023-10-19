@@ -121,3 +121,25 @@ exports.editPost = async (req, res) => {
   }
 }
 
+exports.trips = async (req, res) => {
+ 
+    let perPage = 3;
+    let page = req.query.page || 1;
+
+    try {
+      const trips = await Trip.aggregate([ { $sort: { createdAt: -1 } } ])
+        .skip(perPage * page - perPage)
+        .limit(perPage)
+        .exec(); 
+      const count = await Trip.count();
+
+      res.render('trip/trips', {
+        trips,
+        current: page,
+        pages: Math.ceil(count / perPage),
+      });
+
+    } catch (error) {
+      console.log(error);
+    }
+}

@@ -61,6 +61,7 @@ router.get('/viewtrip/:id', tripController.viewTrip);
 router.get('/edittrip/:id', tripController.editTrip);
 router.put('/edittrip/:id', tripController.editPost); 
 router.delete('/edittrip/:id', tripController.deleteTrip);
+router.get('/trips', tripController.trips);
 
 
 module.exports = router;
