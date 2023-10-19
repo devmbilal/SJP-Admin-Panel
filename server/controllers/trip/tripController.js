@@ -21,8 +21,9 @@ exports.addTrip = async (req, res) => {
 
 exports.postTrip = async (req, res) => {
      console.log(req.body);
-
-    const newTrip = new Trip({
+     
+     
+        const newTrip = new Trip({
         tripId: req.body.tripId,
         tripName: req.body.tripName,
         tripHead: req.body.tripHead,
