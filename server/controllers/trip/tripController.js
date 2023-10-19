@@ -44,6 +44,27 @@ exports.postTrip = async (req, res) => {
     
 }
 
+exports.viewTrip = async (req, res) => {
+
+  try {
+    const trip = await Trip.findOne({ _id: req.params.id })
+
+    const locals = {
+      title: "View Trip Data",
+      description: "Smart Journey Planner Admin Panel",
+    };
+
+    res.render('trip/viewtrip', {
+      locals,
+      trip,
+    })
+
+  } catch (error) {
+    console.log(error);
+  }
+
+}
+
 
 exports.editTrip = async (req, res) => {
 
@@ -99,3 +120,4 @@ exports.editPost = async (req, res) => {
     console.log(error);
   }
 }
+

@@ -57,6 +57,7 @@ router.get('/routes', routeController.routes);
 // Trips
 router.get('/addtrip', tripController.addTrip);
 router.post('/addtrip', tripController.postTrip);
+router.get('/viewtrip/:id', tripController.viewTrip);
 router.get('/edittrip/:id', tripController.editTrip);
 router.put('/edittrip/:id', tripController.editPost); 
 router.delete('/edittrip/:id', tripController.deleteTrip);
