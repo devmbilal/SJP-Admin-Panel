@@ -31,9 +31,8 @@ exports.postTrip = async (req, res) => {
         departureTime:req.body.departureTime,
         vehicleId : req.body.vehicleId,
         routeId: req.body.tripDropdown,
-        serviceId : req.body.serviceId
     });
-
+   
     try {
         await Trip.create(newTrip);
         req.flash("info", "New Trip has been added");
@@ -100,7 +99,6 @@ exports.editPost = async (req, res) => {
         departureTime:req.body.departureTime,
         vehicleId : req.body.vehicleId,
         routeId: req.body.tripDropdown,
-        serviceId : req.body.serviceId,
         updatedAt: Date.now()
     });
     await res.redirect(`/edittrip/${req.params.id}`);
