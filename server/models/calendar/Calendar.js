@@ -2,10 +2,11 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 const calendarSchema = new Schema({
-monday:[{
+days:[{
+   monday:[{
     tripId: { 
     type: Number, 
-    },
+    }, 
   }],
 tuesday: [{
     tripId: { 
@@ -37,11 +38,16 @@ sunday:[{
     type: Number, 
     },
   }],
+}],
+serviceId:{
+    type: String,
+    required: true,
+},
 createdAt:{
     type: Date,
     default: Date.now()
 },
-  updatedAt: {
+updatedAt: {
     type: Date,
     default: Date.now()
   }

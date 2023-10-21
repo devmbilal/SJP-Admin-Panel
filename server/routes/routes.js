@@ -6,7 +6,7 @@ const stopController = require('../controllers/stops/stopController');
 const sequenceController = require('../controllers/sequence/sequenceController');
 const routeController = require('../controllers/route/routeController');
 const tripController = require('../controllers/trip/tripController');
-
+const calendarController=require('../controllers/calendar/calendarController');
 
 // Home Page
 router.get('/', homeController.homepage);
@@ -63,5 +63,8 @@ router.put('/edittrip/:id', tripController.editPost);
 router.delete('/edittrip/:id', tripController.deleteTrip);
 router.get('/trips', tripController.trips);
 
+//Calendar
+// router.get('/addcalendar', calendarController.addCalendar);
+// router.post('/addcalendar', calendarController.postCalendar);
 
 module.exports = router;
