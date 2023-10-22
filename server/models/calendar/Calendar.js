@@ -2,10 +2,12 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 const calendarSchema = new Schema({
-day:[{
-    tripId: { 
-    type: Number, 
-    },
+day:{
+     type: String,
+     required: true,
+},
+tripIds:[{
+  type: Number, 
 }],
 serviceId:{
     type: String,
@@ -20,5 +22,6 @@ updatedAt: {
     default: Date.now()
   }
 });
+
 
 module.exports =  mongoose.model('Calendar',calendarSchema);
