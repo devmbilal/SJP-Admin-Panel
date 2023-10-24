@@ -64,7 +64,7 @@ router.delete('/edittrip/:id', tripController.deleteTrip);
 router.get('/trips', tripController.trips);
 
 //Calendar
-// router.get('/addcalendar', calendarController.addCalendar);
-// router.post('/addcalendar', calendarController.postCalendar);
+router.get('/addcalendar', calendarController.addCalendar);
+
 
 module.exports = router;

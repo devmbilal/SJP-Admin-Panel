@@ -282,6 +282,7 @@
     <thead>
       <tr>
         <th scope="col">Day</th>
+        <th scope="col">Service Id</th>
         <th scope="col" class="text-end">Action</th>
       </tr>
     </thead>
@@ -289,7 +290,8 @@
     <tbody>
       <% trips.forEach(element => { %>
       <tr class="align-middle">
-        <td><%= element.tripName %></td>
+        <td><%= element.day %></td>
+        <td><%= element.serviceId %></td>
         <td class="text-end">
           <div class="d-flex flex-row justify-content-end gap-2">
             <a
