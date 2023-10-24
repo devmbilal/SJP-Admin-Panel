@@ -65,6 +65,6 @@ router.get('/trips', tripController.trips);
 
 //Calendar
 router.get('/addcalendar', calendarController.addCalendar);
-
+router.post('/addcalendar', calendarController.postCalendar);
 
 module.exports = router;
