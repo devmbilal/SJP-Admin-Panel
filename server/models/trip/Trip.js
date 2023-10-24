@@ -25,6 +25,10 @@ tripHead: {
     type: String, 
     required: true
  },
+ serviceId: { 
+    type: String, 
+    required: true
+ },
   arrivalTime: { 
     type: String 
 }, 

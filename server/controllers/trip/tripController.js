@@ -30,6 +30,7 @@ exports.postTrip = async (req, res) => {
         arrivalTime: req.body.arrivalTime,
         departureTime:req.body.departureTime,
         vehicleId : req.body.vehicleId,
+        serviceId: req.body.serviceId,
         routeId: req.body.tripDropdown,
     });
    
@@ -98,6 +99,7 @@ exports.editPost = async (req, res) => {
         arrivalTime: req.body.arrivalTime,
         departureTime:req.body.departureTime,
         vehicleId : req.body.vehicleId,
+        serviceId: req.body.serviceId,
         routeId: req.body.tripDropdown,
         updatedAt: Date.now()
     });
