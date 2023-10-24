@@ -27,17 +27,13 @@
 
 <form action="/addcalendar" method="POST">
   <div class="row form-group mb-4">
-    <div class="col">
-      <label for="CalendarId">Calendar Id</label>
-      <input
-        type="text"
-        class="form-control"
-        id="calendarId"
-        name="calendarId"
-        value=""
-        placeholder="Calendar Id"
-        required
-      />
+    <div class="container">
+      <label for="stopDropdown">Select a Service Id:</label>
+      <select class="form-select" id="serviceDropdown" name="serviceDropdown">
+        <% trips.forEach(trip => { %>
+        <option value="<%=  trip.serviceId %>"><%= trip.serviceId %></option>
+        <% }); %>
+      </select>
     </div>
 
     <div class="col">
