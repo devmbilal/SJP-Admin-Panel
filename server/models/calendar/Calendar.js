@@ -2,12 +2,15 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 const calendarSchema = new Schema({
+
 day:{
      type: String,
      required: true,
 },
 tripIds:[{
-  type: Number, 
+  tripId: { 
+    type: String, 
+    },
 }],
 serviceId:{
     type: String,

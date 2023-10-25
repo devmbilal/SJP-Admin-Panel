@@ -66,5 +66,9 @@ router.get('/trips', tripController.trips);
 //Calendar
 router.get('/addcalendar', calendarController.addCalendar);
 router.post('/addcalendar', calendarController.postCalendar);
+// Route to add a trip to a calendar 
+router.get('/addcalendartrip/:id', calendarController.addCalendarTrip);
+router.post('/addcalendartrip/:id', calendarController.postCalendarTrip);
+
 
 module.exports = router;

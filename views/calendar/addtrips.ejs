@@ -1,0 +1,143 @@
+<div class="messages">
+  <% messages.forEach(element => { %>
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <%= element %>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+  <% }) %>
+</div>
+
+<h1 class="heading">Add Trips to Calendar</h1>
+<div
+  class="d-flex justify-content-between flex-wrap flex-md nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+>
+  <h1 class="h2"><%= calendar.day %></h1>
+  <div class="btn-toolbar mb-2 mb-md 0">
+    <div class="btn-group me-2">
+      <button type="button" class="btn btn-sm btn-outline-secondary">
+        Share
+      </button>
+      <button type="button" class="btn btn-sm btn-outline-secondary">
+        Export
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="col py-3">
+  <div class="row">
+    <div class="col">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+          <li class="breadcrumb-item active"><%= calendar.serviceId %></li>
+        </ol>
+      </nav>
+    </div>
+    <div class="col text-end fw-lighter">
+      <b>Last Updated <%= new Date(calendar.updatedAt).toUTCString() %> </b>
+      <b>CalendarId:</b> <%= calendar._id %>
+    </div>
+  </div>
+</div>
+
+<ul class="list-group">
+  <li class="list-group-item">
+    <div class="row">
+      <div class="col" style="max-width: 140px"><b>Service Id:</b></div>
+      <div class="col"><%= calendar.serviceId %></div>
+    </div>
+  </li>
+
+  <li class="list-group-item">
+    <div class="row">
+      <div class="col" style="max-width: 140px"><b>Day:</b></div>
+      <div class="col"><%= calendar.day %></div>
+    </div>
+  </li>
+
+  <li class="list-group-item">
+    <div class="row">
+      <div class="col" style="max-width: 140px"><b>Date Created:</b></div>
+      <div class="col"><%= calendar.createdAt %></div>
+    </div>
+  </li>
+
+  <li class="list-group-item">
+    <div class="row">
+      <div class="col" style="max-width: 140px"><b>Date Modified:</b></div>
+      <div class="col"><%= calendar.updatedAt %></div>
+    </div>
+  </li>
+</ul>
+
+<div class="stopsec">
+  <form action="/addcalendartrip/<%= calendar._id %>" method="POST">
+    <div class="row form-group mb-4">
+      <div class="container">
+        <label for="tripDropdown">Select a Trip:</label>
+        <select class="form-select" id="tripDropdown" name="tripDropdown">
+          <% trips.forEach(trip => { %>
+          <option value="<%= trip._id %>"><%= trip.tripName %></option>
+          <% }); %>
+        </select>
+      </div>
+
+      <div class="form-group mb-4 stopbtn">
+        <button type="submit" class="btn btn-primary addbutton">
+          Add Trip
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<h2 class="">Trips</h2>
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col" class="text-end">Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% calendar.tripIds.forEach(element => { %>
+      <tr class="align-middle">
+        <td>
+          <% const trip = trips.find(trip => trip._id.toString() ===
+          element.tripId); %> <%= trip ? trip.tripName : 'Unknown Trip' %>
+        </td>
+
+        <td class="text-end">
+          <div class="d-flex flex-row justify-content-end gap-2">
+            <a
+              href="/viewtrip/<%= element.tripId%>"
+              type="button"
+              class="btn btn-primary btn-small"
+            >
+              <i class="bi bi-eye"></i>
+            </a>
+
+            <form
+              action="/deletecalendartrip/<%= calendar._id %>/<%= element.tripId%>?_method=DELETE"
+              method="POST"
+              class="position-relative"
+            >
+              <button type="submit" class="btn btn-danger btn-small">
+                <i class="bi bi-trash"></i>
+              </button>
+            </form>
+          </div>
+        </td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
