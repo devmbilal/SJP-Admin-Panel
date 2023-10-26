@@ -51,7 +51,7 @@ exports.addCalendarTrip = async (req, res) => {
        console.log(trips)
        const calendar = await Calendar.findOne({ _id: req.params.id })
        console.log(calendar)
-       res.render('calendar/addtrips',{locals,calendar,trips,messages, getTripName});
+       res.render('calendar/addtrips',{locals,calendar,trips,messages});
 
     } catch (err) {
         console.log(err);
@@ -95,4 +95,22 @@ exports.postCalendarTrip = async (req, res) => {
     } catch (err) {
         console.log(err);
     }
+}
+
+exports.deleteCalendarTrip = async (req, res) => {
+  
+  try {
+     const { calendarId, tripId } = req.params;
+    // Find the calendar by calendarId
+    const calendar = await Calendar.findOne({ _id: calendarId });
+    // Filter out the trips to be deleted from the tripIds array
+    calendar.tripIds = calendar.tripIds.filter(trip => trip.tripId !== tripId);
+    // Save the updated calendar document
+    await calendar.save();
+    // Redirect to wherever you want after deleting a trip from the calendar
+    res.redirect(`/addcalendartrip/${calendarId}`);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
 }

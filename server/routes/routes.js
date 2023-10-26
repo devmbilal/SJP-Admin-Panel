@@ -69,6 +69,9 @@ router.post('/addcalendar', calendarController.postCalendar);
 // Route to add a trip to a calendar 
 router.get('/addcalendartrip/:id', calendarController.addCalendarTrip);
 router.post('/addcalendartrip/:id', calendarController.postCalendarTrip);
+// Route to delete a stop from sequence
+router.delete('/deletecalendartrip/:calendarId/:tripId', calendarController.deleteCalendarTrip);
+
 
 
 module.exports = router;
