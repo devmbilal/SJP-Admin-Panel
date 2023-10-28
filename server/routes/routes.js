@@ -71,7 +71,8 @@ router.get('/addcalendartrip/:id', calendarController.addCalendarTrip);
 router.post('/addcalendartrip/:id', calendarController.postCalendarTrip);
 // Route to delete a stop from sequence
 router.delete('/deletecalendartrip/:calendarId/:tripId', calendarController.deleteCalendarTrip);
-
+//----------------------------------------
+router.get('/viewcalendar/:id', calendarController.viewCalendar);
 
 
 module.exports = router;

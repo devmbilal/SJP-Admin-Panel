@@ -114,3 +114,25 @@ exports.deleteCalendarTrip = async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 }
+
+exports.viewCalendar = async (req, res) => {
+
+  try {
+    const calendar = await Calendar.findOne({ _id: req.params.id })
+    const trips = await Trip.find({}, 'tripName');
+    const locals = {
+      title: "View Calendar Data",
+      description: "Smart Journey Planner Admin Panel",
+    };
+
+    res.render('calendar/viewcalendar', {
+      locals,
+      calendar,
+      trips
+    })
+
+  } catch (error) {
+    console.log(error);
+  }
+
+}
