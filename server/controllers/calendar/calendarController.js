@@ -185,3 +185,26 @@ exports.editPost = async (req, res) => {
   }
 }
 
+exports.calendars = async (req, res) => {
+ 
+    let perPage = 12;
+    let page = req.query.page || 1;
+
+    try {
+      const calendars = await Calendar.aggregate([ { $sort: { createdAt: -1 } } ])
+        .skip(perPage * page - perPage)
+        .limit(perPage)
+        .exec(); 
+      const count = await Calendar.count();
+
+      res.render('calendar/calendars', {
+        calendars,
+        current: page,
+        pages: Math.ceil(count / perPage),
+      });
+
+    } catch (error) {
+      console.log(error);
+    }
+}
+

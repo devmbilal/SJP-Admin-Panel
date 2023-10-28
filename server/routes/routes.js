@@ -76,5 +76,7 @@ router.get('/viewcalendar/:id', calendarController.viewCalendar);
 router.get('/editcalendar/:id', calendarController.editCalendar);
 router.put('/editcalendar/:id', calendarController.editPost); 
 router.delete('/editcalendar/:id', calendarController.deleteCalendar);
+// Route to view all Days
+router.get('/calendars', calendarController.calendars);
 
 module.exports = router;
