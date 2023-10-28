@@ -11,10 +11,6 @@ const sequenceSchema = new Schema({
     stopId: { 
     type: String, 
     },
-    stopName: {
-      type: String,
-      required: true,
-    },
     seqNumber: {
       type: Number,
       required: true,

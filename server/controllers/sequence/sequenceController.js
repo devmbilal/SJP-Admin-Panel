@@ -125,7 +125,7 @@ exports.viewSequence = async (req, res) => {
 
   try {
     const sequence = await Sequence.findOne({ _id: req.params.id })
-
+    const stops = await Stop.find({}, 'stopName');
     const locals = {
       title: "View Sequence Data",
       description: "Smart Journey Planner Admin Panel",
@@ -134,6 +134,7 @@ exports.viewSequence = async (req, res) => {
     res.render('sequence/viewsequence', {
       locals,
       sequence,
+      stops
     })
 
   } catch (error) {

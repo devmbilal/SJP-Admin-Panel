@@ -76,7 +76,10 @@
     <tbody>
       <% sequence.stops.forEach(element => { %>
       <tr class="align-middle">
-        <td><%= element.stopName %></td>
+        <td>
+          <% const stop = stops.find(stop => stop._id.toString() ===
+          element.stopId); %> <%= stop ? stop.stopName : 'Unknown Stop' %>
+        </td>
         <td><%= element.seqNumber%></td>
         <td class="text-end">
           <div class="d-flex flex-row justify-content-end gap-2">
