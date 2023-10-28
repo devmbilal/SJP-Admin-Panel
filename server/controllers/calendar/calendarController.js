@@ -134,5 +134,54 @@ exports.viewCalendar = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
+}
+exports.editCalendar = async (req, res) => {
+
+  try {
+    const calendar = await  Calendar.findOne({ _id: req.params.id })
+    const trips = await Trip.find({});
+    const locals = {
+      title: "Edit Calendar Data",
+      description: "Smart Journey Planner Admin Panel",
+    };
+
+    res.render('calendar/editcalendar', {
+      locals,
+      calendar,
+      trips
+    })
+
+  } catch (error) {
+    console.log(error);
+  }
 
 }
+
+exports.editPost = async (req, res) => {
+
+  console.log(req.body);
+
+    try {
+    await  Calendar.findByIdAndUpdate(req.params.id,{
+        day: req.body.day,
+        serviceId: req.body.serviceDropdown,
+        updatedAt: Date.now()
+    });
+    await res.redirect(`/editcalendar/${req.params.id}`);
+    
+    console.log('redirected');
+  } catch (error) {
+    console.log(error);
+  }
+
+}
+
+  exports.deleteCalendar = async (req, res) => {
+  try {
+    await  Calendar.deleteOne({ _id: req.params.id });
+    res.redirect("/")
+  } catch (error) {
+    console.log(error);
+  }
+}
+

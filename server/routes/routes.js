@@ -73,6 +73,8 @@ router.post('/addcalendartrip/:id', calendarController.postCalendarTrip);
 router.delete('/deletecalendartrip/:calendarId/:tripId', calendarController.deleteCalendarTrip);
 //----------------------------------------
 router.get('/viewcalendar/:id', calendarController.viewCalendar);
-
+router.get('/editcalendar/:id', calendarController.editCalendar);
+router.put('/editcalendar/:id', calendarController.editPost); 
+router.delete('/editcalendar/:id', calendarController.deleteCalendar);
 
 module.exports = router;
