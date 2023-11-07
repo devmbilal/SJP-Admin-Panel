@@ -10,14 +10,28 @@ exports.addStop = (req, res) => {
     res.render('stop/addstop',locals);
 }
 
-exports.postStop  = async (req, res) => {
+exports.postStop = async (req, res) => {
     console.log(req.body);
 
+    // Find the highest existing stopId
+    const highestStop = await Stop.findOne().sort({ stopId: -1 });
+
+    let nextStopId;
+    if (highestStop) {
+        // Extract the number part of the highest stopId and increment it
+        const match = highestStop.stopId.match(/\d+/);
+        const highestStopId = match ? parseInt(match[0]) : 0;
+        nextStopId = `STP-${highestStopId + 1}`;
+    } else {
+        // If no stops exist, start with STP-1
+        nextStopId = "STP-1";
+    }
+
     const newStop = new Stop({
-        stopId: req.body.stopId,
+        stopId: nextStopId, // Use the formatted stopId
         stopName: req.body.stopName,
         latitude: req.body.latitude,
-        longitude:req.body.longitude
+        longitude: req.body.longitude
     });
 
     try {
@@ -27,8 +41,11 @@ exports.postStop  = async (req, res) => {
     } catch (err) {
         console.log(err);
     }
-    
 }
+
+
+
+
 
 exports.viewStop = async (req, res) => {
 
