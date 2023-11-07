@@ -19,11 +19,25 @@ exports.addSequence = async (req, res) => {
     }
 }
 
-exports.postSequence  = async (req, res) => {
+exports.postSequence = async (req, res) => {
     console.log(req.body);
 
+    // Find the highest existing seqId
+    const highestSequence = await Sequence.findOne().sort({ seqId: -1 });
+
+    let nextSeqId;
+    if (highestSequence) {
+        // Extract the number part of the highest seqId and increment it
+        const match = highestSequence.seqId.match(/\d+/);
+        const highestSeqId = match ? parseInt(match[0]) : 0;
+        nextSeqId = `SEQ-${highestSeqId + 1}`;
+    } else {
+        // If no sequences exist, start with SEQ-1
+        nextSeqId = "SEQ-1";
+    }
+
     const newSequence = new Sequence({
-        seqId: req.body.seqId,
+        seqId: nextSeqId, // Use the formatted seqId
         seqName: req.body.seqName,
         stops: [],
     });
@@ -35,7 +49,6 @@ exports.postSequence  = async (req, res) => {
     } catch (err) {
         console.log(err);
     }
-    
 }
 
 exports.addStopSequence = async (req, res) => {

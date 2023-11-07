@@ -19,13 +19,25 @@ exports.addRoute = async (req, res) => {
 }
 
 
-exports.postRoute  = async (req, res) => {
-
-
+exports.postRoute = async (req, res) => {
     console.log(req.body);
 
+    // Find the highest existing routeId
+    const highestRoute = await Route.findOne().sort({ routeId: -1 });
+
+    let nextRouteId;
+    if (highestRoute) {
+        // Extract the number part of the highest routeId and increment it
+        const match = highestRoute.routeId.match(/\d+/);
+        const highestRouteId = match ? parseInt(match[0]) : 0;
+        nextRouteId = `RT-${highestRouteId + 1}`;
+    } else {
+        // If no routes exist, start with RT-1
+        nextRouteId = "RT-1";
+    }
+
     const newRoute = new Route({
-        routeId: req.body.routeId,
+        routeId: nextRouteId, // Use the formatted routeId
         routeName: req.body.routeName,
         status: req.body.status,
         seqId: req.body.seqDropdown
@@ -38,8 +50,8 @@ exports.postRoute  = async (req, res) => {
     } catch (err) {
         console.log(err);
     }
-    
 }
+
 
 
 exports.viewRoute = async (req, res) => {

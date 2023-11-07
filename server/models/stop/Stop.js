@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 const stopSchema = new Schema({
-  stopId: { type: String, 
+  stopId: {
+  type: String, 
   required: true, 
   unique: true
   },
