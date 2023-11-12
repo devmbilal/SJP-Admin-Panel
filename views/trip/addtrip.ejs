@@ -67,13 +67,14 @@
     </div>
 
     <div class="container">
-      <label for="tripDropdown">Select a Sequence:</label>
+      <label for="tripDropdown">Select a Route:</label>
       <select class="form-select" id="tripDropdown" name="tripDropdown">
         <% routes.forEach(route => { %>
         <option value="<%= route._id %>"><%= route.routeName %></option>
         <% }); %>
       </select>
     </div>
+
     <div class="col">
       <label for="VehicleId">Vehicle Id</label>
       <input
